@@ -186,9 +186,18 @@ async def send_report(message):
                 low_items.append(name)
 
     if low_items:
-        report += "\n⚠️ МАЛО:\n"
+    report += "\n⚠ МАЛО:\n"
+
+    async with aiosqlite.connect(DB_NAME) as db:
         for item in low_items:
-            report += f"- {item}\n"
+            cursor = await db.execute(
+                "SELECT amount FROM stock WHERE name=?",
+                (item,)
+            )
+            row = await cursor.fetchone()
+            amount = row[0] if row else "0"
+
+            report += f"- {item}: {amount}\n"
     else:
         report += "\n✅ Всё в норме"
 
@@ -203,6 +212,7 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
 
 
