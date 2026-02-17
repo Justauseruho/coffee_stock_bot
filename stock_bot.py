@@ -201,4 +201,5 @@ async def main():
 
 if __name__ == "__main__":
     print("Bot started")
-    bot.infinity_polling()
+    bot.polling(none_stop=True)
+
