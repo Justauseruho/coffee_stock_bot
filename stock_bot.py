@@ -195,14 +195,13 @@ async def send_report(message):
     await message.answer(report)
 
 
-async def main():
-    await init_db()
-    await dp.start_polling(bot)
+
 
 async def main():
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
 
