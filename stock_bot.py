@@ -199,5 +199,6 @@ async def main():
     await init_db()
     await dp.start_polling(bot)
 
-if name == "__main__":
-    asyncio.run(main())
+if __name__ == "__main__":
+    print("Bot started")
+    bot.infinity_polling()
